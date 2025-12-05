@@ -1,7 +1,6 @@
 {
   "version": 2,
   "buildCommand": "npm run build:css",
-  "installCommand": "npm install --include=dev",
   "public": true,
   "rewrites": [
     {
