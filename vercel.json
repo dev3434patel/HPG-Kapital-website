@@ -5,7 +5,7 @@
       "destination": "/public/assets/$1"
     },
     {
-      "source": "/(.*\\.(jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2|ttf|eot|webp))",
+      "source": "/(.*\\.(?:jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2|ttf|eot|webp))",
       "destination": "/public/$1"
     },
     {
