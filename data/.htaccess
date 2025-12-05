@@ -1,0 +1,15 @@
+# Protect data directory - Deny all access to JSON files
+<FilesMatch "\.json$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Disable directory browsing
+Options -Indexes
+
+# Additional security
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+</IfModule>
+

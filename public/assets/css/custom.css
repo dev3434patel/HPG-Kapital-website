@@ -1,0 +1,158 @@
+/* Custom CSS for HPG Kapital Website */
+
+/* Tailwind base styles are included via tailwind.css */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Custom animations - EXACT match to React/Framer Motion */
+
+/* Fade-up animation matches Framer Motion: 
+   initial={{ opacity: 0, y: 40 }}
+   animate={{ opacity: 1, y: 0 }}
+   transition={{ duration: 0.6, ease: "easeOut" }}
+*/
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Service card hover - matches Framer Motion whileHover={{ y: -8 }} */
+.service-card {
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+.service-card img {
+    transition: transform 0.5s ease-out;
+}
+
+.service-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Hero parallax - Enhanced for smooth performance */
+.hero-parallax {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    /* Ensure image covers full area and scales properly */
+    transform-origin: center center;
+    /* Smooth transitions */
+    transition: transform 0.1s ease-out;
+}
+
+/* Fixed background for hero sections (all pages except home) */
+.bg-fixed {
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Disable fixed background on mobile for better performance */
+@media (max-width: 768px) {
+    .bg-fixed {
+        background-attachment: scroll;
+    }
+}
+
+/* Skip link */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.sr-only:focus {
+    position: fixed;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    z-index: 9999;
+}
+
+/* Touch target size */
+.touch-target {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Smooth transitions */
+* {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Focus styles for accessibility - only show on keyboard navigation */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid hsl(var(--royal-blue));
+    outline-offset: 2px;
+}
+
+/* Remove click outline/selection box */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+button, a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Keep text selectable in content areas */
+p, span, div:not([role="button"]), td, th {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Print styles */
+@media print {
+    header,
+    footer,
+    nav {
+        display: none;
+    }
+}
+

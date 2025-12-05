@@ -1,0 +1,13 @@
+# Protect storage directory - Deny all access
+Order allow,deny
+Deny from all
+
+# Disable directory browsing
+Options -Indexes
+
+# Additional security
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+</IfModule>
+

@@ -1,0 +1,12 @@
+[05-Dec-2025 14:20:02 America/New_York] Uncaught Exception: Class "App\Controllers\ErrorController" not found in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php on line 161
+[05-Dec-2025 14:20:02 America/New_York] PHP Fatal error:  Uncaught Error: Class "App\Controllers\ErrorController" not found in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php:127
+Stack trace:
+#0 [internal function]: {closure:D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php:121}(Object(Error))
+#1 {main}
+  thrown in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php on line 127
+[05-Dec-2025 14:20:02 America/New_York] Uncaught Exception: Class "App\Controllers\ErrorController" not found in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php on line 161
+[05-Dec-2025 14:20:02 America/New_York] PHP Fatal error:  Uncaught Error: Class "App\Controllers\ErrorController" not found in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php:127
+Stack trace:
+#0 [internal function]: {closure:D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php:121}(Object(Error))
+#1 {main}
+  thrown in D:\00 LD Capital\website\FINAL ALL WEBSITE LD\HPG WEBSITE\HPG website\New folder\php-version\public\index.php on line 127

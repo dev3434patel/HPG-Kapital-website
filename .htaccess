@@ -1,0 +1,12 @@
+# Protect .env file and other sensitive files
+<FilesMatch "^(\.env|\.env\.example|composer\.json|composer\.lock|package\.json|package-lock\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+

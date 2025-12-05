@@ -1,0 +1,19 @@
+{
+  "name": "php-version",
+  "version": "1.0.0",
+  "description": "A complete PHP conversion of the HPG Kapital website, originally built with React/Node.js. This is a production-ready PHP 8+ application with **file-based JSON storage** - **NO DATABASE REQUIRED**.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o public/assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i input.css -o public/assets/css/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}

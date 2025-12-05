@@ -1,0 +1,15 @@
+node_modules/
+.git/
+.env
+.env.local
+*.log
+storage/php_errors.log
+.DS_Store
+Thumbs.db
+*.bat
+*.ps1
+*.sh
+*.md
+.htaccess
+**/.htaccess
+
