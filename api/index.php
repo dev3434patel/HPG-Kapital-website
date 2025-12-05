@@ -6,7 +6,30 @@
  * Vercel requires PHP files to be in the api/ directory for serverless functions
  */
 
-// Ensure proper headers
+// Check if this is a static file request and serve it directly
+$requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+$parsedUri = parse_url($requestUri, PHP_URL_PATH);
+
+// Serve static files from public directory
+if (preg_match('#^/assets/#', $parsedUri) || $parsedUri === '/favicon.ico') {
+    $publicPath = __DIR__ . '/../public' . $parsedUri;
+    if ($parsedUri === '/favicon.ico') {
+        $publicPath = __DIR__ . '/../public/assets/images/favicon.ico';
+    }
+    
+    if (file_exists($publicPath) && is_file($publicPath)) {
+        // Determine MIME type
+        $mimeType = mime_content_type($publicPath);
+        if ($mimeType) {
+            header('Content-Type: ' . $mimeType);
+        }
+        header('Content-Length: ' . filesize($publicPath));
+        readfile($publicPath);
+        exit;
+    }
+}
+
+// Ensure proper headers for HTML responses
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=UTF-8');
 }

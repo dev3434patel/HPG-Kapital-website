@@ -1,12 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build:css",
-  "public": true,
   "rewrites": [
-    {
-      "source": "/assets/(.*)",
-      "destination": "/public/assets/$1"
-    },
     {
       "source": "/(.*)",
       "destination": "/api/index.php"
