@@ -9,7 +9,14 @@ class FileStorage
     public function __construct()
     {
         $config = require __DIR__ . '/../Config/config.php';
-        $this->dataDir = $config['data_path'];
+        
+        // On Vercel, use /tmp for writable storage (data won't persist between deployments)
+        $isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']);
+        if ($isVercel && is_writable('/tmp')) {
+            $this->dataDir = '/tmp/data';
+        } else {
+            $this->dataDir = $config['data_path'];
+        }
         
         // Ensure data directory exists
         if (!is_dir($this->dataDir)) {

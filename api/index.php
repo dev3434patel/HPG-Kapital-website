@@ -23,7 +23,12 @@ if ($rootDir && is_dir($rootDir)) {
 }
 
 // Configure secure session BEFORE starting session
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+// Vercel always serves over HTTPS, so check for Vercel or HTTPS
+$isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']);
+$isHttps = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || 
+           (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
+           $isVercel;
+if ($isHttps) {
     ini_set('session.cookie_secure', 1);
 }
 ini_set('session.cookie_httponly', 1);

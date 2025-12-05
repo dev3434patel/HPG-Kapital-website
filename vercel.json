@@ -1,12 +1,11 @@
 {
+  "version": 2,
+  "buildCommand": "npm run build:css",
+  "public": true,
   "rewrites": [
     {
       "source": "/assets/(.*)",
       "destination": "/public/assets/$1"
-    },
-    {
-      "source": "/(.*\\.(?:jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2|ttf|eot|webp))",
-      "destination": "/public/$1"
     },
     {
       "source": "/(.*)",
@@ -22,7 +21,33 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
     }
-  ]
+  ],
+  "functions": {
+    "api/index.php": {
+      "runtime": "php8.2@latest"
+    }
+  }
 }
 

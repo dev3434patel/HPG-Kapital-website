@@ -19,11 +19,29 @@ if ($envFile) {
     }
 }
 
+// Detect Vercel environment
+$isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']);
+$isVercelPreview = !empty($_ENV['VERCEL_ENV']) && $_ENV['VERCEL_ENV'] === 'preview';
+$isVercelProduction = !empty($_ENV['VERCEL_ENV']) && $_ENV['VERCEL_ENV'] === 'production';
+
+// Auto-detect APP_URL from Vercel environment variables
+$appUrl = null;
+if ($isVercel) {
+    // Vercel provides VERCEL_URL for all deployments (preview and production)
+    if (!empty($_ENV['VERCEL_URL'])) {
+        $appUrl = 'https://' . $_ENV['VERCEL_URL'];
+    }
+    // Production deployments can also use VERCEL_PROJECT_PRODUCTION_URL
+    if ($isVercelProduction && !empty($_ENV['VERCEL_PROJECT_PRODUCTION_URL'])) {
+        $appUrl = 'https://' . $_ENV['VERCEL_PROJECT_PRODUCTION_URL'];
+    }
+}
+
 // Validate critical environment variables
-$appEnv = $_ENV['APP_ENV'] ?? (php_sapi_name() === 'cli-server' ? 'development' : 'production');
+$appEnv = $_ENV['APP_ENV'] ?? ($isVercel ? ($isVercelPreview ? 'preview' : 'production') : (php_sapi_name() === 'cli-server' ? 'development' : 'production'));
 $requiredInProduction = ['APP_URL'];
 
-if ($appEnv === 'production') {
+if ($appEnv === 'production' && !$isVercel) {
     $missing = [];
     foreach ($requiredInProduction as $var) {
         if (empty($_ENV[$var])) {
@@ -41,8 +59,8 @@ if ($appEnv === 'production') {
 return [
     // Application Configuration
     'app_name' => 'HPG Kapital',
-    'app_url' => $_ENV['APP_URL'] ?? 'http://localhost:8000',
-    'app_env' => $_ENV['APP_ENV'] ?? (php_sapi_name() === 'cli-server' ? 'development' : 'production'),
+    'app_url' => $appUrl ?? $_ENV['APP_URL'] ?? 'http://localhost:8000',
+    'app_env' => $appEnv,
     'timezone' => 'America/New_York',
 
     // Security

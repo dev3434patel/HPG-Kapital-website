@@ -35,7 +35,14 @@ class Security
 
     public static function checkRateLimit($key, $maxAttempts, $windowSeconds)
     {
-        $rateLimitFile = __DIR__ . '/../../storage/rate_limits.json';
+        // On Vercel, use /tmp for writable storage
+        $isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']);
+        if ($isVercel && is_writable('/tmp')) {
+            $rateLimitFile = '/tmp/rate_limits.json';
+        } else {
+            $rateLimitFile = __DIR__ . '/../../storage/rate_limits.json';
+        }
+        
         $rateLimits = [];
 
         if (file_exists($rateLimitFile)) {
@@ -73,7 +80,7 @@ class Security
 
         // Save updated rate limits
         $dir = dirname($rateLimitFile);
-        if (!is_dir($dir)) {
+        if (!is_dir($dir) && $dir !== '/tmp') {
             mkdir($dir, 0755, true);
         }
         file_put_contents($rateLimitFile, json_encode($rateLimits));
