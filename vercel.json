@@ -43,11 +43,6 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "api/index.php": {
-      "runtime": "php8.2@latest"
-    }
-  }
+  ]
 }
 
